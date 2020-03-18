@@ -1,7 +1,24 @@
 import collections
 
+# def is_anagram(s1, s2):
+#     return sorted(s1) == sorted(s2)
+
 def is_anagram(s1, s2):
-    return sorted(s1) == sorted(s2)
+    obj = {}
+    for char in s1:
+        if char in obj :
+            obj[char] = obj[char] + 1
+        else:
+            obj[char] = 1
+    for char in s2:
+        if char in obj:
+            obj[char] = obj[char] - 1
+        else :
+            return False
+    for elem in obj:
+        if elem != 0:
+            return False
+    return True
 
 def check_parenthesis_consistency(string):
     count = 0
@@ -10,6 +27,8 @@ def check_parenthesis_consistency(string):
             count += 1
         if char == ')':
             count -= 1
+            if count < 0 :
+                return False
     return count == 0
 
 def shortest_path(start, end, maze):
